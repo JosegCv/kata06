@@ -5,7 +5,10 @@
     <title>Mi Cartera - Todos</title>
 </head>
 <body>
-    <section>
+    <nav>
+        <a href="/new_movement">nuevo</a>
+    </nav>
+    <main>
         <h1>Mis Movimientos</h1>
         <table>
             <tr>
@@ -15,12 +18,12 @@
             </tr>
             {% for movement in The_movements %}
             <tr>
-                <td>{{ movement[0] }}</td>
-                <td>{{ movement[1] }}</td>
-                <td>{{ movement[2] }} {{ movement[3] }}</td>
+                <td>{{ movement.date }}</td>
+                <td>{{ movement.abstract }}</td>
+                <td>{{ movement.amount }} {{ movement.currency }}</td>
             </tr>
             {% endfor %}
         </table>
-    </section>
+    </main>
 </body>
 </html>
