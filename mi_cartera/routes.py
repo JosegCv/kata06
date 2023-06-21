@@ -1,7 +1,12 @@
 from mi_cartera import app
+from mi_cartera.models import Movement, MovementDAO
 from flask import render_template, request, redirect
 import csv
+
+dao = MovementDAO("movements.dat")
 @app.route("/")
+
+
 
 def index():
     f = open("movements.dat", "r")
@@ -14,11 +19,11 @@ def new_mov():
     if request.method == "GET":
         return render_template("new.html")
     else:
+
         data= request.form
-        f = open("movements.dat", "a")
-        writer= csv.DictWriter(f, data.keys())
-        writer.writerow(data)
-        f.close()
+        
+        dao.insert(Movement(data["date"],data["abstract"],data["amount"],data["currency"]))
+
 
         return redirect("/")
     
